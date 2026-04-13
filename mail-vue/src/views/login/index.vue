@@ -567,6 +567,7 @@ function submitRegister() {
 
 .form-wrapper {
   position: fixed;
+  left: 0;
   right: 0;
   height: 100%;
   z-index: 10;
@@ -578,36 +579,96 @@ function submitRegister() {
   }
 }
 
+@keyframes slideInUp {
+  0% {
+    opacity: 0;
+    transform: perspective(500px) translateY(50px) rotateX(-15deg);
+  }
+  100% {
+    opacity: 1;
+    transform: perspective(500px) translateY(0) rotateX(0deg);
+  }
+}
+
 .container {
-  background: v-bind(loginOpacity);
-  padding-left: 40px;
-  padding-right: 40px;
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.2) 0%, rgba(255, 255, 255, 0.05) 100%);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  border-top: 1px solid rgba(255, 255, 255, 0.8);
+  border-left: 1px solid rgba(255, 255, 255, 0.6);
+  backdrop-filter: blur(24px) saturate(150%);
+  -webkit-backdrop-filter: blur(24px) saturate(150%);
+  box-shadow: 
+    0 8px 32px rgba(0, 0, 0, 0.12), 
+    inset 0 4px 6px -2px rgba(255, 255, 255, 0.9), 
+    inset 0 -4px 6px -2px rgba(0, 0, 0, 0.05);
+  border-radius: 24px;
+  padding: 40px;
   display: flex;
   flex-direction: column;
   justify-content: center;
   width: 450px;
-  height: 100%;
-  border-left: 1px solid var(--login-border);
-  box-shadow: var(--el-box-shadow-light);
+  height: fit-content;
+  
+  animation: slideInUp 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.08) 0.1s backwards;
+  transition: all 0.6s cubic-bezier(0.1, 0.9, 0.2, 1);
+  transform: perspective(500px) rotateX(0deg) rotateY(0deg) scale(1) translateY(0);
+  transform-style: preserve-3d;
+  
+  &:hover {
+    transform: perspective(500px) rotateX(2deg) rotateY(-2deg) scale(1.02) translateY(-2px);
+    box-shadow: 
+      0 15px 40px rgba(0, 0, 0, 0.2),
+      0 0 20px rgba(255, 255, 255, 0.4),
+      inset 0 0 15px rgba(255, 255, 255, 0.9),
+      inset 0 -4px 6px -2px rgba(0, 0, 0, 0.05);
+  }
+
   @media (max-width: 1024px) {
-    padding: 20px 18px;
-    width: 384px;
-    margin-left: 18px;
+    padding: 30px 24px;
+    width: 400px;
   }
   @media (max-width: 767px) {
-    border: 1px solid var(--login-border);
-    padding: 20px 18px;
-    border-radius: 6px;
-    height: fit-content;
-    width: 100%;
-    margin-right: 18px;
-    margin-left: 18px;
+    padding: 24px 20px;
+    border-radius: 16px;
+    width: calc(100% - 36px);
   }
 
   .btn {
-    height: 36px;
+    border-radius: 999px;
+    padding: 0.7rem 1.8rem;
+    height: 48px;
     width: 100%;
-    border-radius: 6px;
+    margin-bottom: 0;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: bold;
+    color: var(--el-text-color-primary, #333);
+    
+    transition: all 0.6s cubic-bezier(0.1, 0.9, 0.2, 1);
+    transform: perspective(500px) rotateX(0deg) rotateY(0deg) scale(1) translateY(0);
+    
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.6) 0%, rgba(255, 255, 255, 0.15) 100%);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    border-top: 1px solid rgba(255, 255, 255, 0.8);
+    border-left: 1px solid rgba(255, 255, 255, 0.6);
+    backdrop-filter: blur(24px) saturate(150%);
+    -webkit-backdrop-filter: blur(24px) saturate(150%);
+    box-shadow: 
+      0 8px 32px rgba(0, 0, 0, 0.12), 
+      inset 0 4px 6px -2px rgba(255, 255, 255, 0.9), 
+      inset 0 -4px 6px -2px rgba(0, 0, 0, 0.05);
+
+    &:hover {
+      background: linear-gradient(135deg, rgba(255, 255, 255, 0.85) 0%, rgba(255, 255, 255, 0.35) 100%);
+      border-top: 1px solid rgba(255, 255, 255, 1);
+      border-left: 1px solid rgba(255, 255, 255, 1);
+      transform: perspective(500px) rotateX(12deg) rotateY(-8deg) scale(1.04) translateY(-2px);
+      box-shadow: 
+        0 15px 40px rgba(0, 0, 0, 0.2),
+        0 0 20px rgba(255, 255, 255, 0.6),
+        inset 0 0 15px rgba(255, 255, 255, 0.9),
+        inset 0 -4px 6px -2px rgba(0, 0, 0, 0.05);
+    }
   }
 
   .form-desc {
