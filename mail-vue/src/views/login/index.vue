@@ -662,7 +662,7 @@ function submitRegister() {
       background: linear-gradient(135deg, rgba(255, 255, 255, 0.85) 0%, rgba(255, 255, 255, 0.35) 100%);
       border-top: 1px solid rgba(255, 255, 255, 1);
       border-left: 1px solid rgba(255, 255, 255, 1);
-      transform: perspective(500px) rotateX(12deg) rotateY(-8deg) scale(1.04) translateY(-2px);
+      transform: perspective(500px) rotateX(4deg) rotateY(-2deg) scale(1.02) translateY(-1px);
       box-shadow: 
         0 15px 40px rgba(0, 0, 0, 0.2),
         0 0 20px rgba(255, 255, 255, 0.6),
