@@ -135,6 +135,7 @@ const zh = {
     websiteSetting: '网站设置',
     websiteReg: '用户注册',
     loginDomain: '登录框域名',
+    regDomain: '注册框域名',
     multipleEmail: '多号模式',
     multipleEmailDesc: '开启后账号栏出现一个用户可以添加多个邮箱',
     customization: '个性化设置',
