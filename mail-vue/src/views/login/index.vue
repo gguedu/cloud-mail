@@ -49,9 +49,9 @@
           </el-button>
         </div>
         <div v-show="show !== 'login'">
-          <el-input :class="settingStore.settings.regDomain === 0 ? 'email-input' : ''" v-model="registerForm.email" type="text" :placeholder="$t('emailAccount')"
+          <el-input class="email-input" v-model="registerForm.email" type="text" :placeholder="$t('emailAccount')"
                     autocomplete="off">
-            <template #append v-if="settingStore.settings.regDomain === 0">
+            <template #append>
               <div @click.stop="openSelect">
                 <el-select
                     v-if="show !== 'login'"
@@ -108,8 +108,8 @@
     </div>
     <el-dialog class="bind-dialog" v-model="showBindForm"  title="注册邮箱" >
       <div class="bind-container">
-        <el-input :class="settingStore.settings.regDomain === 0 ? 'email-input' : ''" v-model="bindForm.email" type="text" :placeholder="$t('emailAccount')" autocomplete="off">
-          <template #append v-if="settingStore.settings.regDomain === 0">
+        <el-input v-model="bindForm.email" type="text" :placeholder="$t('emailAccount')" autocomplete="off">
+          <template #append>
             <div @click.stop="openSelect">
               <el-select
                   ref="mySelect"
@@ -314,7 +314,7 @@ function bind() {
     return
   }
 
-  let email = bindForm.email + (settingStore.settings.regDomain === 0 ? suffix.value : '');
+  let email = bindForm.email + suffix.value;
 
 
   if (!isEmail(email)) {
@@ -340,7 +340,7 @@ function bind() {
 
   }
 
-  const form = {email: email, oauthUserId: bindForm.oauthUserId, code: bindForm.code}
+  const form = {email: bindForm.email + suffix.value, oauthUserId: bindForm.oauthUserId, code: bindForm.code}
 
   bindLoading.value = true
   oauthBindUser(form).then(data => {
@@ -417,9 +417,7 @@ function submitRegister() {
     return
   }
 
-  let email = registerForm.email + (settingStore.settings.regDomain === 0 ? suffix.value : '');
-
-  console.log(email)
+  console.log(registerForm.email)
 
   if (registerForm.email.length < settingStore.settings.minEmailPrefix) {
     ElMessage({
@@ -430,7 +428,7 @@ function submitRegister() {
     return
   }
 
-  if (!isEmail(email)) {
+  if (!isEmail(registerForm.email + suffix.value)) {
     ElMessage({
       message: t('notEmailMsg'),
       type: 'error',
@@ -509,7 +507,7 @@ function submitRegister() {
   registerLoading.value = true
 
   const form = {
-    email: email,
+    email: registerForm.email + suffix.value,
     password: registerForm.password,
     token: verifyToken,
     code: registerForm.code

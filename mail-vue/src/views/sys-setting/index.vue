@@ -25,13 +25,6 @@
                 </div>
               </div>
               <div class="setting-item">
-                <div><span>{{ $t('regDomain') }}</span></div>
-                <div>
-                  <el-switch @change="change" :before-change="beforeChange" :active-value="0" :inactive-value="1"
-                             v-model="setting.regDomain"/>
-                </div>
-              </div>
-              <div class="setting-item">
                 <div><span>{{ $t('regKey') }}</span></div>
                 <div>
                   <el-select

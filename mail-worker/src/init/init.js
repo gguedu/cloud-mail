@@ -112,12 +112,8 @@ const dbInit = {
 			await c.env.db.prepare(`ALTER TABLE setting ADD COLUMN min_email_prefix INTEGER NOT NULL DEFAULT 1;`).run();
 		} catch (e) {
 			console.warn(`跳过字段：${e.message}`);
-		}		
-		try {
-			await c.env.db.prepare(`ALTER TABLE setting ADD COLUMN reg_domain INTEGER NOT NULL DEFAULT 0;`).run();
-		} catch (e) {
-			console.warn(`跳过字段添加：${e.message}`);
 		}
+
 	},
 
 	async v2_3DB(c) {
